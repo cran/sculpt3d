@@ -66,6 +66,7 @@ function(filter_vec = .local$current, col = .local$base_colors, type = .local$ty
 					type=type,
 					alpha = alpha[filter_vec],
 					col=col[filter_vec],
+					size = .local$size,
 					...
 					)
 					
@@ -79,6 +80,7 @@ function(filter_vec = .local$current, col = .local$base_colors, type = .local$ty
 						radius = .local$radius[filter_vec & .local$selected],
 						type = type,
 						col = .local$selected_color,
+						size = .local$size,
 						...
 						)
 	}
@@ -108,7 +110,7 @@ function(){
 		.local$crop_button$sensitive = TRUE
 		.local$delete_button$sensitive = TRUE
 	} else { 
-		.local$selected <- rep(TRUE, length(.local$x)) 
+		.local$selected <- rep(FALSE, length(.local$x)) 
 	}
 	if (!is.null(.local$callback)) .local$callback(.local$current, .local$selected, .local$selected_color)
 }
@@ -249,7 +251,8 @@ c("RGtk2", "JGR", "datasets", "utils", "grDevices", "graphics",
 .resetData <-
 function(button,data){
 	.local$current <- rep(TRUE, length(.local$current))
-	.local$selected <- !.local$current
+	.local$selected <- rep(FALSE, length(.local$current))
+	.local$show_labels <- FALSE
 	.filterPlot3d(.local$current)
 	if (!is.null(.local$callback)) .local$callback(.local$current, .local$selected, .local$selected_color)
 }

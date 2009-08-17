@@ -6,10 +6,10 @@
 The sculpt3d GUI for interactive 3d plot brushing and editing
 }
 \description{
-Provides a simple toolbar GUI for interacting with 3D rgl plots.  The data to be plotted is provided to sculpt3d(), which calls relevant rgl plot3d() functions by proxy. A subset of the plot3d() arguments are accommodated.  See below for the list of acceptable parameters.
+Provides a simple toolbar GUI for interacting with 3D rgl plots.  The data to be plotted is provided to sculpt3d(), which calls relevant rgl plot3d() functions by proxy. A subset of the plot3d() arguments is accommodated.  See below for the list of acceptable parameters.
 }
 \usage{
-sculpt3d(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, type = 'p', alpha = NULL, callback = NULL)
+sculpt3d(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, type = 'p', alpha = NULL, callback = NULL, size = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,9 +31,13 @@ sculpt3d(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, typ
   \item{alpha}{
 	the alpha transparency to use.
 }
-  \item{callback}{
-	(optional) the callback function to use.
+  \item{size}{
+	the size for plotted points
 }
+  \item{callback}{
+	the callback function to use.
+}
+
 }
 \details{
 	The above arguments are passed on to \code{\link[rgl]{plot3d}} for plotting.  However, rgl currently does not have a method of determining which data points are currently being represented in a given rgl device.  Therefore, it is necessary to first pass this data to \code{sculpt3d} to generate both the toolbar and the rgl plot.

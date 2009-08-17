@@ -1,5 +1,5 @@
 sculpt3d <-
-function(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, type = 'p', alpha=NULL, callback=NULL ){
+function(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, type = 'p', alpha=NULL, callback=NULL, size = NULL ){
 	
 	.local$callback = callback
 	
@@ -11,7 +11,7 @@ function(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, typ
 	}
 	
 	
-	
+	.local$size <- size
 	.local$radius <- radius
 	.local$type <- type
 	coords <- xyz.coords(x,y,z)
@@ -22,12 +22,18 @@ function(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, typ
 	.local$show_labels = FALSE
 	.local$selected_color = 'red'
 	
-
+	if (length(labels) != length(.local$x)) {
+		.local$labels <- rep(labels, length(.local$x), length.out = length(.local$x))
+	} else {.local$labels <- col}
 	
 	
 	if (length(col) != length(.local$x)) {
-		.local$base_colors <- rep(col, length(.local$x) %/% length(col))
-	} else .local$base_colors <- col
+		.local$base_colors <- rep(col, length(.local$x), length.out = length(.local$x))
+	} else {.local$base_colors <- col}
+
+	if (length(radius) != length(.local$x) && !is.null(radius)) {
+		.local$radius <- rep(radius, length(.local$x),length.out = length(.local$x))
+	} else {.local$radius <- radius}
 
 	if (is.null(labels)){
 		.local$show_labels = FALSE

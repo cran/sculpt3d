@@ -18,13 +18,6 @@ License: \tab GPL\cr
 LazyLoad: \tab yes\cr
 }
 
-History:
-\tabular{ll}{
-0.1 \tab First public release: selecting, cropping, deleting functionality \cr
-0.2 \tab Select callback function capability added \cr
-}
-
-
 }
 \author{
 Justin Donaldson
@@ -37,10 +30,10 @@ Maintainer: Justin Donaldson <jdonaldson@gmail.com>
 \keyword{ package }
 \seealso{
 
-		\code{\link{sculpt3d}} & Create a toolbar to plot and interact with the given data
-		\code{\link{sculpt3d.selected}} & Retrieve a logical vector indicating currently selected points
-		\code{\link{sculpt3d.current}} & Retrieve a logical vector indicating currently visible points
-		\code{\link{sculpt3d.setCallback}} & set a callback function for selection/crop/deletion events
+		\code{\link{sculpt3d}} : Create a toolbar to plot and interact with the given data \cr
+		\code{\link{sculpt3d.selected}} : Retrieve a logical vector indicating currently selected points \cr
+		\code{\link{sculpt3d.current}} : Retrieve a logical vector indicating currently visible points \cr
+		\code{\link{sculpt3d.setCallback}} : set a callback function for selection/crop/deletion events \cr
 
 }
 

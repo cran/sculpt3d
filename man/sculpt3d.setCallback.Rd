@@ -43,8 +43,9 @@ Justin Donaldson
 		z <- rnorm(1000) + atan2(x,y)
 		sculpt3d(x, y, z, labels=1:1000, col=rainbow(1000), type='s', radius=runif(1000)/5, alpha = .5)
 		f = function(current, selected, selected_color) {
-				plot(x[current & !selected],z[current & !selected])
-				points(x[selected],z[selected], col=selected_color)     
+				plot(x[current],y[current],type='n') # set plot dimensions
+				points(x[current & !selected],z[current & !selected]) # current points
+				points(x[selected],z[selected], col=selected_color)   # selected points
 		}
 		sculpt3d.setCallback(f)
 		# now select/crop/delete using the toolbar to see the auxiliary 2d plot update itself

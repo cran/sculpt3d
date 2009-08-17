@@ -1,2 +1,5 @@
 * version 0.1 - Initial release.  Selecting, coloring, cropping, deleting, and mouseMode switching features are added.
-* version 0.2 - 
+* version 0.2 - support for callbacks
+* version 0.2-1 - fixed bug when specifying radii with sphere based points.
+				- fixed reset button behavior
+				- fixed color argument bug
