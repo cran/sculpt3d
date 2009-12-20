@@ -57,7 +57,12 @@ function(button){
 .filterPlot3d <-
 function(filter_vec = .local$current, col = .local$base_colors, type = .local$type, alpha = .local$alpha, ...){
 	.rglCurCheck()
-
+	
+	
+	if (any(.local$selected)){
+		col[.local$selected] = .local$selected_color
+	}
+	
 	rgl::plot3d( 	.local$x[filter_vec], 
 					.local$y[filter_vec], 
 					.local$z[filter_vec],
@@ -69,21 +74,6 @@ function(filter_vec = .local$current, col = .local$base_colors, type = .local$ty
 					size = .local$size,
 					...
 					)
-					
-	if (any(.local$selected)){
-		rgl::plot3d( 	.local$x[filter_vec & .local$selected], 
-						.local$y[filter_vec & .local$selected], 
-						.local$z[filter_vec & .local$selected], 
-						add = TRUE,
-						box = FALSE,
-						axes = FALSE,
-						radius = .local$radius[filter_vec & .local$selected],
-						type = type,
-						col = .local$selected_color,
-						size = .local$size,
-						...
-						)
-	}
 	selected = .local$selected
 	if (!any(selected)) selected = rep(TRUE, length(selected))
 	
