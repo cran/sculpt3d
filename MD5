@@ -1,0 +1,17 @@
+eb92ef133f8a8161fef97f54edbd537c *DESCRIPTION
+8b54e5a89fbda3af5e077053d40bec76 *NAMESPACE
+030d11db5ae22d048072401595d41c5f *NEWS
+34349a2cdde6336165aecd50f7a3a629 *R/sculpt3d-internal.R
+a988730693fd2b9c200532e55cd7ae68 *R/sculpt3d.R
+1040d45df68b73f689dfcf085eccbf95 *R/sculpt3d.current.R
+039229abf297a14cec422e6eddd9493a *R/sculpt3d.selected.R
+383ff51f7d27020b0ed945316a450d4e *R/sculpt3d.setCallback.R
+c77456fa3adcc98e5e98ec07f605a027 *demo/00Index
+6981aa759d9703df0e525c863317148e *demo/sculpt3d.R
+22f108a4a95e37869414822319f42a12 *inst/etc/rglToolbar.glade
+45aea93755cd3a81a87e9b744d0faa84 *inst/etc/rglToolbar.gtkb
+1bd3e0d10a720c7b03e35bda3883b635 *man/sculpt3d-package.Rd
+d7c9698a66e2698d86678307185d5a1d *man/sculpt3d.Rd
+f928d2f12c09537a99a48a17a7743fc5 *man/sculpt3d.current.Rd
+119faba426f0d011d10a7444e2099e0a *man/sculpt3d.selected.Rd
+e56c1eaa59a2a2f843a1140e0b26522b *man/sculpt3d.setCallback.Rd

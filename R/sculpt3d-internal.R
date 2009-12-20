@@ -89,14 +89,12 @@ function(filter_vec = .local$current, col = .local$base_colors, type = .local$ty
 
 .select3dCall <-
 function(){
-	.local$select_function <- rgl::rgl.select3d()
+	.local$select_function = rgl::rgl.select3d()
 	.local$select3d_button$setActive(FALSE)
 	.local$selected <- .local$select_function(.local$x, .local$y, .local$z ) & .local$current
 	if (any(.local$selected)) {
 		rgl::rgl.pop(id=rgl.ids()[rgl.ids()[,2]=='points',]$id)
-
 		.filterPlot3d()
-
 		.local$crop_button$sensitive = TRUE
 		.local$delete_button$sensitive = TRUE
 	} else { 
@@ -267,10 +265,15 @@ function(){
 function(button,data){
 	if (button$getActive()){
 		.rglCurCheck()
+        rgl::rgl.bringtotop()	
 		if(.Platform$GUI == "AQUA"){
-			rgl::rgl.bringtotop()
-			system("osascript -e 'tell application \"R\" to activate cmd \"sculpt3d:::.select3dCall()\"'")
-		} else  .select3dCall()
+		    R = "R"
+		    if (Sys.getenv("R_ARCH") == "/x86_64"){
+		        R = "R64"
+		    }
+			system(paste("osascript -e 'tell application \"", R, "\" to activate cmd \"sculpt3d:::.select3dCall()\"'",sep=""))
+        } else  .select3dCall()
+
 	}
 }
 

@@ -66,47 +66,52 @@ function(x, y = NULL, z = NULL, col = 'black', labels = NULL, radius = NULL, typ
 	.filterPlot3d(.local$current) # call plot3d with the current points and filter
 	result <- try(etc <- file.path(.path.package(package="sculpt3d")[1], "etc"), silent=TRUE)
 
+	gxml = gtkBuilderNew()
+	
 	if (inherits(result, "try-error"))
-	    gxml = gladeXMLNew("rglToolbar.glade")
+	    gtkBuilderAddFromFile(gxml, 'rglToolbar.gtkb', .errwarn = TRUE)
 	  else
-	    gxml = gladeXMLNew(file.path(etc,"rglToolbar.glade"))
-
-	.local$gWidget <-  gxml$getWidget(name='rglToolbar')
+	    gtkBuilderAddFromFile(gxml, file.path(etc,"rglToolbar.gtkb"), .errwarn=TRUE)
+    
+    
+    
+	.local$gWidget <-  gtkBuilderGetObject(gxml,'rglToolbar')
 	.local$gWidget$setKeepAbove(TRUE)
 	.local$gWidget$Show()
 		
 
-	.local$select3d_button <- gxml$getWidget('Select3d')	
+    .local$select3d_button <- gtkBuilderGetObject(gxml,'Select3d')    
 	
-	label_button = gxml$getWidget('Label')
+	label_button = gtkBuilderGetObject(gxml,'Label')
 	
 	if(is.null(.local$labels)) label_button$sensitive = FALSE
 	
-	color_button =  gxml$getWidget('SelectColor')
-	.local$color_swatch <- gxml$getWidget('ColorSwatch')
+	color_button =  gtkBuilderGetObject(gxml,'SelectColor')
+	.local$color_swatch <- gtkBuilderGetObject(gxml,'ColorSwatch')
 
 	.local$color_swatch$modifyBg("normal",as.GdkColor(.local$selected_color))
 
 	valid_mouse_modes = c("none", "trackball", "xAxis", "yAxis", "zAxis", "polar", "zoom","fov")
 	init_modes = r3dDefaults$mouseMode
 
-	.local$crop_button <- gxml$getWidget('Crop'); 
-	.local$delete_button <- gxml$getWidget('Delete'); 
+	.local$crop_button <- gtkBuilderGetObject(gxml,'Crop'); 
+	
+	.local$delete_button <- gtkBuilderGetObject(gxml,'Delete'); 
 
 	.local$crop_button$sensitive = FALSE
 	.local$delete_button$sensitive = FALSE
 	
 	
 	
-	option_button <- gxml$getWidget('Options')
-	reset_button <- gxml$getWidget('Reset')
+	option_button <- gtkBuilderGetObject(gxml,'Options')
+	reset_button <- gtkBuilderGetObject(gxml,'Reset')
 
-	left_click = gxml$getWidget('LeftClick') 
+	left_click = gtkBuilderGetObject(gxml,'LeftClick')
 	left_click$setActive(which(init_modes[1] == valid_mouse_modes)-1)
 
-	middle_click = gxml$getWidget('MiddleClick') 
+	middle_click = gtkBuilderGetObject(gxml,'MiddleClick')
 	middle_click$setActive(which(init_modes[2] == valid_mouse_modes)-1)
-	right_click = gxml$getWidget('RightClick') 
+	right_click = gtkBuilderGetObject(gxml,'RightClick')
 	
 	right_click$setActive(which(init_modes[3] == valid_mouse_modes)-1)
 	# right_click$setFocusOnClick(TRUE)
